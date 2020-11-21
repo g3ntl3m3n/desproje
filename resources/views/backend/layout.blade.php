@@ -78,18 +78,17 @@ scratch. This page gets rid of all links and provides the needed markup only.
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="/backend/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+              <img src="/images/users/{{Auth::user()->file}}" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">Yikik Developer</span>
+              <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="/backend/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                <img src="/images/users/{{Auth::user()->file}}" class="img-circle" alt="User Image">
 
                 <p>
-                  Alexander Pierce - Web Developer
-                  <small>Member since Nov. 2012</small>
+                  {{Auth::user()->name}}
                 </p>
               </li>
           
@@ -99,7 +98,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Log out</a>
+                  <a href="{{route('ninja.logout')}} " class="btn btn-default btn-flat">Log out</a>
                 </div>
               </li>
             </ul>
@@ -120,10 +119,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+          <img src="/images/users/{{Auth::user()->file}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Yikik Developer</p>
+          <p>{{ Auth::user()->name }}</p>
           <!-- Status -->
         </div>
       </div>
