@@ -3,11 +3,11 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header white-border">
-                <h1 class="box-title">Settings</h1>
+                <h1 class="box-title">Gallery Settings</h1>
             </div>
-            <div class="box-body">Products Page</div>
+            <div class="box-body">Gallery</div>
             <div align="right">
-               <a href="{{route('galeri.create')}}"> <button type="button" class="btn btn-success">Ekle</button></a>
+               <a href="{{route('galeri.create')}}"> <button type="button" class="btn btn-success">Add</button></a>
             </div>
                 <table class="table table-striped table-bordered">
                 <thead>
@@ -43,9 +43,9 @@
                    
                     <td>
                     @if($settings->status=="1")
-                          Aktif 
+                          Published 
                     @else
-                        Pasif 
+                        Drafted 
                     @endif     
                     </td>
                     

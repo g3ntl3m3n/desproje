@@ -22,6 +22,7 @@ Route::namespace('App\Http\Controllers\Backend')->group(function(){
         Route::get('/', 'DefaultController@login')->name('ninja.login');
         Route::get('/logout', 'DefaultController@logout')->name('ninja.logout');
         Route::post('/loggin', 'DefaultController@authentication')->name('ninja.auth');
+        
 
 
     });   
@@ -30,7 +31,6 @@ Route::middleware(['admin'])->group(function(){
 Route::namespace('App\Http\Controllers\Backend')->group(function(){
     Route::prefix('ninja')->group(function(){
         Route::get('/dashboard', 'DefaultController@index')->name('ninja.index');
-
         Route::get('/settings', 'SettingsController@index')->name('ninja.settings');
         Route::post('', 'SettingsController@sortable')->name('ninja.sortable');
         Route::get('/delete/{id}', 'SettingsController@destroy')->name('ninja.destroy');
@@ -44,6 +44,8 @@ Route::namespace('App\Http\Controllers\Backend')->group(function(){
     Route::prefix('ninja')->group(function(){
         Route::resource('products', 'ProductController');
         Route::post('sortable', 'ProductController@sortable')->name('products.sortable');
+        Route::get('product-edit{id}', 'ProductController@edit')->name('product.edit');
+        Route::post('product-update{id}', 'ProductController@update')->name('product.update');
 
     });
 });
@@ -53,6 +55,8 @@ Route::namespace('App\Http\Controllers\Backend')->group(function(){
     Route::prefix('ninja')->group(function(){
         Route::resource('blog', 'BlogController');
         Route::post('test', 'BlogController@sortable')->name('blog.sortable');
+        Route::get('blog-edit{id}', 'BlogController@edit')->name('blog.edit');
+        Route::post('blog-update{id}', 'BlogController@update')->name('blog.update');
     });
 });
 });
@@ -79,6 +83,8 @@ Route::namespace('App\Http\Controllers\Backend')->group(function(){
     Route::prefix('ninja')->group(function(){
         Route::resource('user', 'UserController');
         Route::post('usersorting', 'UserController@sortable')->name('user.sortable');
+        Route::get('user-edit{id}', 'UserController@edit')->name('user.edit');
+        Route::post('user-update{id}', 'UserController@update')->name('user.update');
     });
 });
 });

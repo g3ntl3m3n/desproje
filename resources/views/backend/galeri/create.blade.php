@@ -3,7 +3,7 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header white-border">
-                <h1 class="box-title">Add Image</h1>
+                <h1 class="box-title">Add</h1>
             </div>
             <div class="box-body"></div>
             <form
@@ -13,7 +13,7 @@
             @csrf
 
             <div class="form-group">
-                <label>Resim Seç</label>
+                <label>Image</label>
                 <div class="row">
                  <div class="col-xs-12">
                      <input type="file"
@@ -56,13 +56,13 @@
            
    
             <div class="form-group">
-                <label>Durum</label>
+                <label>Status</label>
                 <div class="row">
                  <div class="col-xs-12">
                       
-                   <select name="status" class="form-control    ">
-                   <option value="1">Yayınla</option>
-                   <option value="">Yayınlama</option>
+                   <select name="status" class="form-control">
+                   <option value="1">Publish</option>
+                   <option value="">Draft</option>
 
                    </select>
                

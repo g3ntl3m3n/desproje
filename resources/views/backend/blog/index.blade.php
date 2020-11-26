@@ -3,12 +3,12 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header white-border">
-                <h1 class="box-title">Settings</h1>
+                <h1 class="box-title">Blog Settings</h1>
             </div>
-            <div class="box-body">Blog Page</div>
+            <div class="box-body">Blog</div>
             <div align="right">
                <a href="{{route('blog.create')}}">
-                <button type="button" class="btn btn-success">Ekle</button></a>
+                <button type="button" class="btn btn-success">Add</button></a>
             </div>
                 <table class="table table-striped table-bordered">
                 <thead>
@@ -36,14 +36,14 @@
                    
                     <td>
                     @if($settings->status=="1")
-                          Aktif 
+                          Published 
                     @else
-                        Pasif 
+                        Drafted 
                     @endif     
                     </td>
                     
                     <td>{{$settings->type}}</td>
-                    <td><a href="{{route('ninja.edit', ['id' => $settings->id])}}"><i class="fa fa-pencil-square"></td>
+                    <td><a href="{{route('blog.edit', ['id' => $settings->id])}}"><i class="fa fa-pencil-square"></td>
                     <td>
                    
                     <a href="javascript:void(0)"><i id="@php echo $settings->id @endphp" class="fa fa-trash-o"></td>

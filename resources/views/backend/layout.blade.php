@@ -94,10 +94,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           
               <!-- Menu Footer-->
               <li class="user-footer">
-                <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                </div>
-                <div class="pull-right">
+                <div class="text-center">
                   <a href="{{route('ninja.logout')}} " class="btn btn-default btn-flat">Log out</a>
                 </div>
               </li>
@@ -122,7 +119,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
           <img src="/images/users/{{Auth::user()->file}}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{{ Auth::user()->name }}</p>
+          <h4>{{ Auth::user()->name }}</h4>
           <!-- Status -->
         </div>
       </div>
@@ -130,15 +127,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
       <!-- Sidebar Menu -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">Menuler</li>
         <!-- Optionally, you can add icons to the links -->
+        <hr>
         <li class="active"><a href="{{route('ninja.index')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
         <li><a href="{{route('ninja.settings')}}"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
         <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>User</span></a></li>
         <li><a href="{{route('products.index')}}"><i class="fa fa-product-hunt"></i> <span>Products</span></a></li>
         <li><a href="{{route('blog.index')}}"><i class="fa fa-pencil"></i> <span>Blog</span></a></li>
         <li><a href="{{route('slider.index')}}"><i class="fa fa-image"></i> <span>Slider</span></a></li>
-        <li><a href="{{route('galeri.index')}}"><i class="fa fa-image"></i> <span>Galeri</span></a></li>
+        <li><a href="{{route('galeri.index')}}"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
 
 
        <!-- <li class="treeview">

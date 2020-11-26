@@ -93,7 +93,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        $products = Products::where('id', $id)->first();
+        return view('backend.products.edit')->with('products', $products);
     }
 
     /**
@@ -105,7 +106,39 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->hasFile('file')){
+            $request->validate([
+                'file' => 'required|image|mimes:jpg,png,jpeg|max:2048'
+            ]);
+            $file_name = uniqid().'.'.$request->file->getClientOriginalExtension();
+            $request->file = move(public_path('images/products'), $file_name);
+            $request->file = $file_name;
+        }
+        if(strlen($request->slug)>3)
+        {
+            $slug = Str::slug($request->slug);
+        }
+        else
+        {
+            $slug = Str::slug($request->title);
+        }
+        $products = Product::where('id', $id)->update(
+            [
+                'title'     => $request->title,
+                'content'   => $request->content,
+                'slug'      => $slug,
+                'file'      => $file_name,
+                'status'    => $request->status
+            ]);
+        if($products){
+            $path = 'images/products'.$request->old_file;
+            if(file_exists($path)){
+                unlink(public_path($path));
+
+            }
+            return redirect(route('products.index'))->with('Success', 'Updated');
+        }
+        return redirect(route('product.index'))->with('Error', 'Error');    
     }
 
     /**

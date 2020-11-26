@@ -5,7 +5,7 @@
             <div class="box-header white-border">
                 <h1 class="box-title">Settings</h1>
             </div>
-            <div class="box-body">Settings Page</div>
+            <div class="box-body">Settings</div>
                 <table class="table table-striped table-bordered">
                 <thead>
                 <tr>

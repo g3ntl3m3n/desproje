@@ -3,13 +3,15 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header white-border">
-                <h1 class="box-title">Add</h1>
+                <h1 class="box-title">Edit User</h1>
             </div>
             <div class="box-body"></div>
-            <form
-                action="{{route('products.store')}}"
-                method="post"
-                enctype="multipart/form-data">
+            <form action="
+            {{route('user.update', 
+            ['id' => $users->id])}}" 
+            method="post"
+            enctype="multipart/form-data">
+
             @csrf
 
             <div class="form-group">
@@ -25,41 +27,37 @@
 
 
             <div class="form-group">
-                <label>Title</label>
+                <label>Name</label>
                 <div class="row">
                  <div class="col-xs-12">
-                     <input type="text" required name="title" class="form-control">
+                     <input type="text" required name="name" class="form-control" placeholder="{{$users->name}}">
                  </div>
             </div>
 
             <div class="form-group">
-                <label>Slug</label>
+                <label>Email</label>
                 <div class="row">
                  <div class="col-xs-12">
-                     <input type="text" name="slug" class="form-control" >
+                     <input type="email" name="email" class="form-control" placeholder="{{$users->email}}" >
+                 </div>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <div class="row">
+                 <div class="col-xs-12">
+                     <input type="password" name="password" class="form-control" placeholder="Enter new password.." >
                  </div>
             </div>
            
+        
             <div class="form-group">
-                <label>Content</label>
+                <label>Role</label>
                 <div class="row">
                  <div class="col-xs-12">
                       
-                     <textarea class="form-control" id="editor1"  name="content" required></textarea>
-               
-                 <script>
-                 CKEDITOR.replace('editor1');
-                 </script>
-                 </div>
-            </div>
-            <div class="form-group">
-                <label>Status</label>
-                <div class="row">
-                 <div class="col-xs-12">
-                      
-                   <select name="status" class="form-control">
-                   <option value="1">Publish</option>
-                   <option value="">Draft</option>
+                   <select name="role" class="form-control    ">
+                   <option value="1">Admin</option>
+                   <option value="0">User</option>
 
                    </select>
                
@@ -69,9 +67,10 @@
                  </div>
             </div>
 
+            <input type="hidden" name="old_file" value="{{$users->file}}">
 
             <div align="right" class="box-footer">
-                <button type="submit" class="btn btn-success">Ekle</div>
+                <button type="submit" class="btn btn-success">Update</div>
             </div>
             </form>
                 

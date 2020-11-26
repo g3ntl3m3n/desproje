@@ -103,7 +103,8 @@ class BlogController extends Controller
      */
     public function edit($id)
     {
-        //
+        $blogs = Blog::where('id', $id)->first();
+        return view('backend.blog.edit')->with('blogs', $blogs);
     }
 
     /**
@@ -115,7 +116,41 @@ class BlogController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($request, $id);
+        if($request->hasFile('file')){
+            $request->validate([
+                'file' => 'required|mimes:jpg,png,jpeg|max:2048'
+            ]);
+        $file_name = uniqid().'.'.$request->file->getClientOriginalExtension();
+        $request->file->move(public_path('images/blogs'), $file_name);
+        $request->file = $file_name;   
+               
+        }
+        if(strlen($request->slug)>3)
+        {
+            $slug = Str::slug($request->slug);
+        }
+        else
+        {
+            $slug = Str::slug($request->title);
+        }
+        $blogs = Blog::where('id', $id)->update(
+            [
+                'title'  => $request->title,
+                'file'   => $file_name,
+                'content' => $request->content,
+                'slug'    => $slug,
+                'status'    => $request->status 
+            ]);
+        if($blogs){
+            $path = "images/blogs".$request->old_file;
+            if(file_exists($path)){
+                @unlink(public_path($path));
+            }
+            return redirect(route('blog.index'))->with("Success", "Success");    
+
+        } 
+        return redirect(route('blog.index'))->with("Error", "Error");   
     }
 
     /**

@@ -17,7 +17,7 @@
             </div>
             @if($settings->type=="file")
             <div class="form-group">
-                <label>Resim Seç</label>
+                <label>Image</label>
                 <div class="row">
                  <div class="col-xs-12">
                      <input type="file"  class="form-control" name="value" required value="{{$settings->description}}">
@@ -26,7 +26,7 @@
             @endif
 
             <div class="form-group">
-                <label>İçerik</label>
+                <label>Content</label>
                 <div class="row">
                  <div class="col-xs-12">
                  @if ($settings->type=="text")
@@ -56,7 +56,7 @@
                     <input type="hidden" name="old_file" value="{{$settings->value}}">
                  @endif
             <div align="right" class="box-footer">
-                <button type="submit" class="btn btn-success">Düzenle</div>
+                <button type="submit" class="btn btn-success">Update</div>
             </div>
             </form>
                 

@@ -4,6 +4,13 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Products;
+use App\Models\Blog;
+use App\Models\Galeri;
+
+
+
 use Auth;
 //my default controller for base
 
@@ -11,7 +18,11 @@ class DefaultController extends Controller
 {
     public function index(){
 
-        return view('backend.default.index');
+        $count['count'] = User::count();
+        $products['products'] = Products::count();
+        $blogs['blogs'] = Blog::count();
+        $galeri['galeri'] = Galeri::count();
+        return view('backend.default.index', compact('count', 'products', 'blogs', 'galeri'));
     }
     public function login(){
         return view('backend.default.login');   

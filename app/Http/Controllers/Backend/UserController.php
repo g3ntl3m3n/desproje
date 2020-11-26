@@ -100,7 +100,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+       
+        $users = User::where('id', $id)->first();
+        return view('backend.users.edit')->with('users', $users);
+
     }
 
     /**
@@ -112,7 +115,35 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if($request->hasFile('file')){
+            $request->validate([
+                'name' => 'required',
+                'email' => 'required|email',
+                'password' => 'required|Min:6',
+                'file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+            ]);
+            $file_name = uniqid().'.'.$request->file->getClientOriginalExtension();
+            $request->file->move(public_path('images/users'), $file_name);
+            $request->file = $file_name;
+        }
+        
+        $users = User::where('id', $id)->update(
+            [
+                'name' => $request->name,
+                'email' => $request->email,
+                'file'  => $file_name,
+                'password' => Hash::make($request->password),
+                'role' => $request->role
+            ]);
+        if($users){
+            $path = 'images/users/'.$request->old_file;
+            if(file_exists($path)){
+                @unlink(public_path($path));
+            }
+            return redirect(route('user.index'))->with('Success', "Success");
+        }
+        return redirect(route('user.index'))->with('Error', "Error");    
+
     }
 
     /**

@@ -13,7 +13,7 @@
             @csrf
 
             <div class="form-group">
-                <label>Resim Seç</label>
+                <label>Image</label>
                 <div class="row">
                  <div class="col-xs-12">
                      <input type="file"
@@ -41,7 +41,7 @@
             </div>
            
             <div class="form-group">
-                <label>İçerik</label>
+                <label>Content</label>
                 <div class="row">
                  <div class="col-xs-12">
                       
@@ -53,13 +53,13 @@
                  </div>
             </div>
             <div class="form-group">
-                <label>Durum</label>
+                <label>Status</label>
                 <div class="row">
                  <div class="col-xs-12">
                       
                    <select name="status" class="form-control">
-                   <option value="1">Yayınla</option>
-                   <option value="">Yayınlama</option>
+                   <option value="1">Publish</option>
+                   <option value="">Draft</option>
 
                    </select>
                
