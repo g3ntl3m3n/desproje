@@ -8,6 +8,12 @@ use App\Http\Controllers\Backend\GaleriController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\UserController;
 use App\Http\Controllers\Backend\UserAuthController;
+use App\Http\Controllers\API\ProductAPIController;
+use App\Http\Controllers\API\BlogAPIController;
+use App\Http\Controllers\API\GaleriAPIController;
+use App\Http\Controllers\API\SliderAPIController;
+
+
 
 
 
@@ -16,7 +22,15 @@ Route::get('/', function () {
     return view('newpage');
 });
 //Route::get('ninja',           'App\Http\Controllers\Backend\DefaultController@index')->name('ninja.index');
-
+Route::namespace('App\Http\Controllers\API')->group(function(){
+    Route::prefix('api')->group(function(){
+        Route::get('product', 'ProductAPIController@index');
+        Route::get('blog', 'BlogAPIController@index');
+        Route::get('galeri', 'GaleriAPIController@index');
+        Route::get('slider', 'SliderAPIController@index');
+        
+    });
+});
 Route::namespace('App\Http\Controllers\Backend')->group(function(){
     Route::prefix('ninja')->group(function(){
         Route::get('/', 'DefaultController@login')->name('ninja.login');

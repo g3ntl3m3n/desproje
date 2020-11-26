@@ -3,7 +3,7 @@
     <section class="content-header">
         <div class="box box-primary">
             <div class="box-header white-border">
-                <h1 class="box-title">Slider Settings</h1>
+                <h1 class="box-title">Slider Settingsw</h1>
             </div>
             <div class="box-body">Slider</div>
             <div align="right">
