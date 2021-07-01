@@ -33,6 +33,23 @@
             </div>
 
             <div class="form-group">
+                <label>Category</label>
+                <div class="row">
+                 <div class="col-xs-12">
+                   <select name="category" class="form-control">
+                    @foreach($data['cat'] as $cat)
+
+                   <option value="{{$cat->slug}}">{{$cat->slug}}</option>
+                    @endforeach
+                   </select>
+               
+                 <script>
+                 CKEDITOR.replace('editor1');
+                 </script>
+                 </div>
+            </div>
+
+            <div class="form-group">
                 <label>Slug</label>
                 <div class="row">
                  <div class="col-xs-12">

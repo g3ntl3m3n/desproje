@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Products;
+use App\Models\Category;
+
 use Illuminate\Support\Str;
 
 class ProductController extends Controller
@@ -27,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('backend.products.create');
+        $data['cat'] = Category::all()->sortBy('must');
+        return view('backend.products.create', compact('data'));
     }
 
     /**
@@ -50,6 +53,7 @@ class ProductController extends Controller
                 [
                     'title' => 'required',
                     'content' => 'required',
+                    'category' => 'required',
                     'file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
                 ]);
             $file_name = uniqid().'.'.$request->file->getClientOriginalExtension();
@@ -59,6 +63,7 @@ class ProductController extends Controller
         $products = Products::insert(
             [
                 'title' => $request->title,
+                'category' => $request->category,
                 'slug'  => $slug, //x
                 'file'  => $file_name, //x
                 'content' => $request->content,

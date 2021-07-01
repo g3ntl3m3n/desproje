@@ -73,7 +73,6 @@
                         data: data,
                         url: "{{route('slider.sortable')}}",
                         success: function (msg) {
-                            // console.log(msg);
                             if (msg) {
                                 alertify.success("Success");
                             } else {
@@ -90,15 +89,15 @@
         $(".fa-trash-o").click(function(){
             destroy_id = $(this).attr('id');
 
-            alertify.confirm("r u sure mate",
+            alertify.confirm("Do you want to delete it?",
             function(){
                 $.ajax({
                     type: "DELETE",
-                    url: "blog/"+destroy_id,
+                    url: "slider/"+destroy_id,
                     success: function(msg){
                         if(msg){
                             $("#item-"+destroy_id).remove();
-                            alertify.success("Success");
+                            alertify.success("Do you want to delete it?");
                         }else{
                             alertify.error("Error");
                         }
@@ -106,7 +105,7 @@
                 });
             },
             function(){
-                alertify.error("alright mate");
+                alertify.error("Error while deleting");
             }
             );
         });

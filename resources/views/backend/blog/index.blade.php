@@ -16,6 +16,7 @@
                 <th>Title</th>
                 <th>Content</th>
                 <th>File</th>
+                <th>Language</th>
                 <th>Status</th>
                 <th></th>
                 <th></th>
@@ -25,13 +26,22 @@
                 <tr id="item-{{$settings->id}}">
                    
                     <td class="sortable">{{$settings->title}}</td>
-                    <td class="sortable">{{strip_tags($settings->content)}}</td>
+                    <td class="sortable">{{substr(strip_tags(html_entity_decode($settings->content)),0,15)}}..</td>
                     <td>
                     
                         <img width="80" class="img-thumbnail" src="/images/blogs/{{$settings->file}}">
                 
                       
                   
+                    </td>
+                    <td>
+                    @if($settings->lang=="tr")
+                        Turkish
+                    @elseif($settings->lang=="en")
+                        English
+                    @elseif($settings->lang=="ar")
+                        عربي 
+                    @endif
                     </td>
                    
                     <td>
@@ -89,7 +99,6 @@
         });
         $(".fa-trash-o").click(function(){
             destroy_id = $(this).attr('id');
-
             alertify.confirm("r u sure mate",
             function(){
                 $.ajax({

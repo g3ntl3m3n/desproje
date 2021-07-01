@@ -13,6 +13,7 @@
                 <thead>
                 <tr>
                 <th>Title</th>
+                <th>Category</th>
                 <th>Content</th>
                 <th>File</th>
                 <th>Status</th>
@@ -24,6 +25,7 @@
                 <tr id="item-{{$settings->id}}">
                    
                     <td class="sortable">{{$settings->title}}</td>
+                    <td class="sortable">{{$settings->category}}</td>
                     <td class="sortable">{{strip_tags($settings->content)}}</td>
                     <td>
                     
@@ -72,7 +74,6 @@
                         data: data,
                         url: "{{route('products.sortable')}}",
                         success: function (msg) {
-                            // console.log(msg);
                             if (msg) {
                                 alertify.success("Success");
                             } else {
@@ -89,7 +90,7 @@
         $(".fa-trash-o").click(function(){
             destroy_id = $(this).attr('id');
 
-            alertify.confirm("r u sure mate",
+            alertify.confirm("Do you want to delete it?",
             function(){
                 $.ajax({
                     type: "DELETE",
@@ -97,9 +98,9 @@
                     success: function(msg){
                         if(msg){
                             $("#item-"+destroy_id).remove();
-                            alertify.success("Success");
+                            alertify.success("Deleted");
                         }else{
-                            alertify.error("Error");
+                            alertify.error("Error while deleting.");
                         }
                     }
                 });

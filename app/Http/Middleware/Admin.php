@@ -19,7 +19,8 @@ class Admin
     {
         if(!\Auth::guest() && \Auth::user()->role==1){  
             return $next($request);
-        }else{
+        }
+        else{
             return redirect(route('ninja.login'))->with('error', 'Hatalı giriş..');
         }
         //return redirect(route('ninja.login'));

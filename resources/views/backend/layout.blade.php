@@ -132,8 +132,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
         <li class="active"><a href="{{route('ninja.index')}}"><i class="fa fa-link"></i> <span>Dashboard</span></a></li>
         <li><a href="{{route('ninja.settings')}}"><i class="fa fa-cog"></i> <span>Settings</span></a></li>
         <li><a href="{{route('user.index')}}"><i class="fa fa-user"></i> <span>User</span></a></li>
+        <li><a href="{{route('category.index')}}"><i class="fa fa-product-hunt"></i> <span>Category</span></a></li>
         <li><a href="{{route('products.index')}}"><i class="fa fa-product-hunt"></i> <span>Products</span></a></li>
         <li><a href="{{route('blog.index')}}"><i class="fa fa-pencil"></i> <span>Blog</span></a></li>
+        <li><a href="{{route('messages.index')}}"><i class="fa fa-envelope"></i> <span>Messages</span></a></li>
         <li><a href="{{route('slider.index')}}"><i class="fa fa-image"></i> <span>Slider</span></a></li>
         <li><a href="{{route('galeri.index')}}"><i class="fa fa-image"></i> <span>Gallery</span></a></li>
 

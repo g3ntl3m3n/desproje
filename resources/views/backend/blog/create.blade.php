@@ -53,6 +53,21 @@
                  </div>
             </div>
             <div class="form-group">
+                <label>Lang</label>
+                <div class="row">
+                 <div class="col-xs-12">
+                      
+                   <select name="lang" class="form-control">
+                   <option value="tr">Türkçe</option>
+                   <option value="en">English</option>
+                   <option value="ar">عربي</option>
+
+                   </select>
+      
+                 </div>
+            </div>
+            
+            <div class="form-group">
                 <label>Status</label>
                 <div class="row">
                  <div class="col-xs-12">
@@ -62,10 +77,7 @@
                    <option value="">Draft</option>
 
                    </select>
-               
-                 <script>
-                 CKEDITOR.replace('editor1');
-                 </script>
+      
                  </div>
             </div>
 

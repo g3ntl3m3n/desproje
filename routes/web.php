@@ -15,22 +15,6 @@ use App\Http\Controllers\API\SliderAPIController;
 
 
 
-
-
-
-Route::get('/', function () {
-    return view('newpage');
-});
-//Route::get('ninja',           'App\Http\Controllers\Backend\DefaultController@index')->name('ninja.index');
-Route::namespace('App\Http\Controllers\API')->group(function(){
-    Route::prefix('api')->group(function(){
-        Route::get('product', 'ProductAPIController@index');
-        Route::get('blog', 'BlogAPIController@index');
-        Route::get('galeri', 'GaleriAPIController@index');
-        Route::get('slider', 'SliderAPIController@index');
-        
-    });
-});
 Route::namespace('App\Http\Controllers\Backend')->group(function(){
     Route::prefix('ninja')->group(function(){
         Route::get('/', 'DefaultController@login')->name('ninja.login');
@@ -75,6 +59,14 @@ Route::namespace('App\Http\Controllers\Backend')->group(function(){
 });
 });
 Route::middleware(['admin'])->group(function(){
+    Route::namespace('App\Http\Controllers\Backend')->group(function(){
+        Route::prefix('ninja')->group(function(){
+            Route::resource('messages', 'MessageController');
+            Route::get('messages/{id}', 'MessageController@destroy')->name('message.destroy');
+        });
+    });
+    });
+Route::middleware(['admin'])->group(function(){
 Route::namespace('App\Http\Controllers\Backend')->group(function(){
     Route::prefix('ninja')->group(function(){
         Route::resource('slider', 'SliderController');
@@ -102,5 +94,44 @@ Route::namespace('App\Http\Controllers\Backend')->group(function(){
     });
 });
 });
+
+
+
+Route::namespace('App\Http\Controllers\Front')->group(function(){
+    Route::prefix('/')->group(function(){
+        Route::redirect("/", "tr");
+        Route::get('{lang}', 'DefaultIndexController@index')->name("home");
+        Route::get('{lang}/blog', 'BlogController@index')->name('blog');
+        Route::get('{lang}/blog-detail/{slug}', 'BlogController@detail');
+        Route::get('/{lang}/about', 'AboutController@index')->name('about');
+        Route::get('/{lang}/services', 'ServicesController@index')->name('services');
+        Route::get('/{lang}/products', 'ProductController@index')->name('products');
+        Route::get('/{lang}/category/{slug}', 'ProductController@category');
+        Route::get('/{lang}/contact', 'ContactController@index')->name('contact');
+        Route::post("/", 'ContactController@store')->name('store');
+
+    });
+});
+
+Route::middleware(['admin'])->group(function(){
+Route::namespace('App\Http\Controllers\Backend')->group(function(){
+    Route::prefix('ninja')->group(function(){
+         Route::resource('category', 'CategoryController');
+        Route::post('categorysorting', 'CategoryController@sortable')->name('category.sortable');
+    });
+});
+});
+
+//Route::get('ninja',           'App\Http\Controllers\Backend\DefaultController@index')->name('ninja.index');
+Route::namespace('App\Http\Controllers\API')->group(function(){
+    Route::prefix('api')->group(function(){
+        Route::get('product', 'ProductAPIController@index');
+        Route::get('blog', 'BlogAPIController@index');
+        Route::get('galeri', 'GaleriAPIController@index');
+        Route::get('slider', 'SliderAPIController@index');
+        
+    });
+});
+
 
 

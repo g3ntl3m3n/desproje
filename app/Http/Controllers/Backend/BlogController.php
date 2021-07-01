@@ -60,27 +60,29 @@ class BlogController extends Controller
                 [
                     'title' => 'required',
                     'content' => 'required',
-                    'file' => 'required|image|mimes:jpg,jpeg,png|max:2048'
+                    'file' => 'required|image|mimes:jpg,jpeg,png|max:2048',
+                    'lang' => 'required'
                 ]);
             $file_name = uniqid().'.'.$request->file->getClientOriginalExtension();
             $request->file->move(public_path('images/blogs'), $file_name);
             $request->file = $file_name;
         }
-        $blogs = Blog::insert(
+        $blogs = Blog::create(
             [
                 'title' => $request->title,
                 'slug'  => $slug, //x
                 'file'  => $file_name, //x
                 'content' => $request->content,
-                'status' => $request->status
+                'lang'    => $request->lang,
+                'status' => $request->status                
             ]
             );
 
         if ($blogs){
-            return redirect(route('blog.index'))->with('Success', 'Ürün ekleme başarılı..');
+            return redirect(route('blog.index'))->with('Success', 'Blog başarıyla Eklendi');
             
         }else{
-            return back()->with('Error', 'Ürün ekleme başarısız oldu!');
+            return back()->with('Error', 'Blog ekleme başarısız oldu!');
         }    
     }
 
@@ -140,7 +142,8 @@ class BlogController extends Controller
                 'file'   => $file_name,
                 'content' => $request->content,
                 'slug'    => $slug,
-                'status'    => $request->status 
+                'lang'    => $request->lang,
+                'status'    => $request->status
             ]);
         if($blogs){
             $path = "images/blogs".$request->old_file;

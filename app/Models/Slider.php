@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Slider extends Model
 {
-    public $table = 'slider';
+    protected $table = 'slider';
     use HasFactory;
 }
